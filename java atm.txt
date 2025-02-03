@@ -1,0 +1,127 @@
+🏦 ATM Simulator in Java | Secure & Interactive Banking System
+🔐 ATM Simulator – A simple yet powerful Java-based banking system that allows users to securely check balance, deposit, withdraw, and manage their funds. This interactive console-based ATM ensures a smooth banking experience with PIN authentication and an intuitive menu-driven interface.
+
+🚀 Features
+✅ Secure PIN-based authentication 🔑
+✅ Check balance, deposit, and withdraw money 💰
+✅ User-friendly menu-driven interface 📟
+✅ Fully object-oriented Java implementation 🚀
+✅ Handles invalid inputs and errors gracefully ✅
+✅ Lightweight & runs on any Java-supported system 🎯
+
+📜 Java Code: ATM Simulation
+java
+Copy
+Edit
+import java.util.Scanner;
+
+public class ATM {
+    private double balance;
+    private final int PIN = 1234; // Default PIN
+
+    public ATM(double initialBalance) {
+        this.balance = initialBalance;
+    }
+
+    // Authenticate user with a PIN
+    public boolean authenticate(int enteredPin) {
+        return enteredPin == PIN;
+    }
+
+    // Display current balance
+    public void checkBalance() {
+        System.out.println("\n💰 Your current balance: $" + balance);
+    }
+
+    // Deposit money
+    public void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+            System.out.println("\n✅ Successfully deposited: $" + amount);
+            checkBalance();
+        } else {
+            System.out.println("\n❌ Invalid deposit amount.");
+        }
+    }
+
+    // Withdraw money
+    public void withdraw(double amount) {
+        if (amount > 0 && amount <= balance) {
+            balance -= amount;
+            System.out.println("\n✅ Successfully withdrawn: $" + amount);
+            checkBalance();
+        } else {
+            System.out.println("\n❌ Insufficient balance or invalid amount.");
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        ATM atm = new ATM(1000); // Initial balance of $1000
+
+        System.out.print("\n🔑 Enter PIN: ");
+        int enteredPin = scanner.nextInt();
+
+        // Authenticate PIN
+        if (!atm.authenticate(enteredPin)) {
+            System.out.println("\n❌ Invalid PIN. Access Denied.");
+            return;
+        }
+
+        // Menu-driven interface
+        while (true) {
+            System.out.println("\n📟 ATM Menu:");
+            System.out.println("1️⃣ Check Balance");
+            System.out.println("2️⃣ Deposit Money");
+            System.out.println("3️⃣ Withdraw Money");
+            System.out.println("4️⃣ Exit");
+            System.out.print("👉 Choose an option: ");
+
+            int choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    atm.checkBalance();
+                    break;
+                case 2:
+                    System.out.print("\n💵 Enter deposit amount: ");
+                    double depositAmount = scanner.nextDouble();
+                    atm.deposit(depositAmount);
+                    break;
+                case 3:
+                    System.out.print("\n💳 Enter withdrawal amount: ");
+                    double withdrawAmount = scanner.nextDouble();
+                    atm.withdraw(withdrawAmount);
+                    break;
+                case 4:
+                    System.out.println("\n👋 Thank you for using the ATM. Goodbye!");
+                    scanner.close();
+                    return;
+                default:
+                    System.out.println("\n❌ Invalid choice. Please try again.");
+            }
+        }
+    }
+}
+📂 Folder Structure
+plaintext
+Copy
+Edit
+📂 ATM-Java-Program
+ ┣ 📜 ATM.java         # Main Java program
+ ┣ 📜 README.md        # Project details and usage
+ ┣ 📜 .gitignore       # Ignoring unnecessary files
+ ┣ 📜 LICENSE          # Open-source license (optional)
+🎯 How It Works
+1️⃣ User enters PIN – Only authenticated users can proceed.
+2️⃣ Menu-driven operations – Choose from checking balance, depositing, or withdrawing money.
+3️⃣ Handles invalid inputs – Prevents incorrect transactions.
+4️⃣ Secure & reliable – Object-oriented design ensures stability.
+
+📜 License
+This project is open-source and free to use. Modify and contribute as needed!
+
+💡 Enhancements: Want to upgrade this project? Consider adding:
+✅ Database integration for persistent balance storage.
+✅ Graphical User Interface (GUI) using Java Swing or JavaFX.
+✅ Multiple user accounts support.
